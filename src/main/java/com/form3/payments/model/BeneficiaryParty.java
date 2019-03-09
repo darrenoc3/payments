@@ -11,44 +11,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "account_name",
-        "account_number",
-        "account_number_code",
-        "account_type",
-        "address",
-        "bank_id",
-        "bank_id_code",
-        "name"
+    "account_name",
+    "account_number",
+    "account_number_code",
+    "account_type",
+    "address",
+    "bank_id",
+    "bank_id_code",
+    "name"
 })
 public class BeneficiaryParty {
 
-    @JsonProperty("account_name")
-    public String accountName;
-    @JsonProperty("account_number")
-    public String accountNumber;
-    @JsonProperty("account_number_code")
-    public String accountNumberCode;
-    @JsonProperty("account_type")
-    public Integer accountType;
-    @JsonProperty("address")
-    public String address;
-    @JsonProperty("bank_id")
-    public String bankId;
-    @JsonProperty("bank_id_code")
-    public String bankIdCode;
-    @JsonProperty("name")
-    public String name;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  @JsonProperty("account_name")
+  public String accountName;
+  @JsonProperty("account_number")
+  public String accountNumber;
+  @JsonProperty("account_number_code")
+  public String accountNumberCode;
+  @JsonProperty("account_type")
+  public Integer accountType;
+  @JsonProperty("address")
+  public String address;
+  @JsonProperty("bank_id")
+  public String bankId;
+  @JsonProperty("bank_id_code")
+  public String bankIdCode;
+  @JsonProperty("name")
+  public String name;
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 
 }

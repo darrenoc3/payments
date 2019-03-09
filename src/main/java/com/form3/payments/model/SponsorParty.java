@@ -11,29 +11,29 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "account_number",
-        "bank_id",
-        "bank_id_code"
+    "account_number",
+    "bank_id",
+    "bank_id_code"
 })
 public class SponsorParty {
 
-    @JsonProperty("account_number")
-    public String accountNumber;
-    @JsonProperty("bank_id")
-    public String bankId;
-    @JsonProperty("bank_id_code")
-    public String bankIdCode;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  @JsonProperty("account_number")
+  public String accountNumber;
+  @JsonProperty("bank_id")
+  public String bankId;
+  @JsonProperty("bank_id_code")
+  public String bankIdCode;
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 
 }

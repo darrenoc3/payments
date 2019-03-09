@@ -12,32 +12,32 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "bearer_code",
-        "sender_charges",
-        "receiver_charges_amount",
-        "receiver_charges_currency"
+    "bearer_code",
+    "sender_charges",
+    "receiver_charges_amount",
+    "receiver_charges_currency"
 })
 public class ChargesInformation {
 
-    @JsonProperty("bearer_code")
-    public String bearerCode;
-    @JsonProperty("sender_charges")
-    public List<SenderCharge> senderCharges = null;
-    @JsonProperty("receiver_charges_amount")
-    public String receiverChargesAmount;
-    @JsonProperty("receiver_charges_currency")
-    public String receiverChargesCurrency;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  @JsonProperty("bearer_code")
+  public String bearerCode;
+  @JsonProperty("sender_charges")
+  public List<SenderCharge> senderCharges = null;
+  @JsonProperty("receiver_charges_amount")
+  public String receiverChargesAmount;
+  @JsonProperty("receiver_charges_currency")
+  public String receiverChargesCurrency;
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 
 }
