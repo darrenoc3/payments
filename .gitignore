@@ -15,4 +15,14 @@ hs_err_pid*
 
 *.lock
 
-\.gradle/4\.10/
+\.gradle/
+
+\.idea/
+
+build/
+
+out/
+
+*.iml
+
+\.project
