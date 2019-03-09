@@ -1,54 +1,91 @@
 package com.form3.payments.model;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+public class BeneficiaryParty{
+	private String bankIdCode;
+	private String accountNumber;
+	private int accountType;
+	private String address;
+	private String bankId;
+	private String accountName;
+	private String name;
+	private String accountNumberCode;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "account_name",
-    "account_number",
-    "account_number_code",
-    "account_type",
-    "address",
-    "bank_id",
-    "bank_id_code",
-    "name"
-})
-public class BeneficiaryParty {
+	public void setBankIdCode(String bankIdCode){
+		this.bankIdCode = bankIdCode;
+	}
 
-  @JsonProperty("account_name")
-  public String accountName;
-  @JsonProperty("account_number")
-  public String accountNumber;
-  @JsonProperty("account_number_code")
-  public String accountNumberCode;
-  @JsonProperty("account_type")
-  public Integer accountType;
-  @JsonProperty("address")
-  public String address;
-  @JsonProperty("bank_id")
-  public String bankId;
-  @JsonProperty("bank_id_code")
-  public String bankIdCode;
-  @JsonProperty("name")
-  public String name;
-  @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<>();
+	public String getBankIdCode(){
+		return bankIdCode;
+	}
 
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties() {
-    return this.additionalProperties;
-  }
+	public void setAccountNumber(String accountNumber){
+		this.accountNumber = accountNumber;
+	}
 
-  @JsonAnySetter
-  public void setAdditionalProperty(String name, Object value) {
-    this.additionalProperties.put(name, value);
-  }
+	public String getAccountNumber(){
+		return accountNumber;
+	}
 
+	public void setAccountType(int accountType){
+		this.accountType = accountType;
+	}
+
+	public int getAccountType(){
+		return accountType;
+	}
+
+	public void setAddress(String address){
+		this.address = address;
+	}
+
+	public String getAddress(){
+		return address;
+	}
+
+	public void setBankId(String bankId){
+		this.bankId = bankId;
+	}
+
+	public String getBankId(){
+		return bankId;
+	}
+
+	public void setAccountName(String accountName){
+		this.accountName = accountName;
+	}
+
+	public String getAccountName(){
+		return accountName;
+	}
+
+	public void setName(String name){
+		this.name = name;
+	}
+
+	public String getName(){
+		return name;
+	}
+
+	public void setAccountNumberCode(String accountNumberCode){
+		this.accountNumberCode = accountNumberCode;
+	}
+
+	public String getAccountNumberCode(){
+		return accountNumberCode;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"BeneficiaryParty{" + 
+			"bank_id_code = '" + bankIdCode + '\'' + 
+			",account_number = '" + accountNumber + '\'' + 
+			",account_type = '" + accountType + '\'' + 
+			",address = '" + address + '\'' + 
+			",bank_id = '" + bankId + '\'' + 
+			",account_name = '" + accountName + '\'' + 
+			",name = '" + name + '\'' + 
+			",account_number_code = '" + accountNumberCode + '\'' + 
+			"}";
+		}
 }

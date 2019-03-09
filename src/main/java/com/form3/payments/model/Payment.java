@@ -1,45 +1,61 @@
 package com.form3.payments.model;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "type",
-    "id",
-    "version",
-    "organisation_id",
-    "attributes"
-})
 public class Payment {
+	private String organisationId;
+	private Attributes attributes;
+	private String id;
+	private String type;
+	private int version;
 
-  @JsonProperty("type")
-  public String type;
-  @JsonProperty("id")
-  public String id;
-  @JsonProperty("version")
-  public Integer version;
-  @JsonProperty("organisation_id")
-  public String organisationId;
-  @JsonProperty("attributes")
-  public Attributes attributes;
-  @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<>();
+	public void setOrganisationId(String organisationId){
+		this.organisationId = organisationId;
+	}
 
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties() {
-    return this.additionalProperties;
-  }
+	public String getOrganisationId(){
+		return organisationId;
+	}
 
-  @JsonAnySetter
-  public void setAdditionalProperty(String name, Object value) {
-    this.additionalProperties.put(name, value);
-  }
+	public void setAttributes(Attributes attributes){
+		this.attributes = attributes;
+	}
 
+	public Attributes getAttributes(){
+		return attributes;
+	}
+
+	public void setId(String id){
+		this.id = id;
+	}
+
+	public String getId(){
+		return id;
+	}
+
+	public void setType(String type){
+		this.type = type;
+	}
+
+	public String getType(){
+		return type;
+	}
+
+	public void setVersion(int version){
+		this.version = version;
+	}
+
+	public int getVersion(){
+		return version;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"Payment{" +
+			"organisation_id = '" + organisationId + '\'' + 
+			",attributes = '" + attributes + '\'' + 
+			",id = '" + id + '\'' + 
+			",type = '" + type + '\'' + 
+			",version = '" + version + '\'' + 
+			"}";
+		}
 }

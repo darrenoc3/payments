@@ -1,42 +1,51 @@
 package com.form3.payments.model;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+public class Fx{
+	private String originalCurrency;
+	private String exchangeRate;
+	private String originalAmount;
+	private String contractReference;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "contract_reference",
-    "exchange_rate",
-    "original_amount",
-    "original_currency"
-})
-public class Fx {
+	public void setOriginalCurrency(String originalCurrency){
+		this.originalCurrency = originalCurrency;
+	}
 
-  @JsonProperty("contract_reference")
-  public String contractReference;
-  @JsonProperty("exchange_rate")
-  public String exchangeRate;
-  @JsonProperty("original_amount")
-  public String originalAmount;
-  @JsonProperty("original_currency")
-  public String originalCurrency;
-  @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<>();
+	public String getOriginalCurrency(){
+		return originalCurrency;
+	}
 
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties() {
-    return this.additionalProperties;
-  }
+	public void setExchangeRate(String exchangeRate){
+		this.exchangeRate = exchangeRate;
+	}
 
-  @JsonAnySetter
-  public void setAdditionalProperty(String name, Object value) {
-    this.additionalProperties.put(name, value);
-  }
+	public String getExchangeRate(){
+		return exchangeRate;
+	}
 
+	public void setOriginalAmount(String originalAmount){
+		this.originalAmount = originalAmount;
+	}
+
+	public String getOriginalAmount(){
+		return originalAmount;
+	}
+
+	public void setContractReference(String contractReference){
+		this.contractReference = contractReference;
+	}
+
+	public String getContractReference(){
+		return contractReference;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"Fx{" + 
+			"original_currency = '" + originalCurrency + '\'' + 
+			",exchange_rate = '" + exchangeRate + '\'' + 
+			",original_amount = '" + originalAmount + '\'' + 
+			",contract_reference = '" + contractReference + '\'' + 
+			"}";
+		}
 }

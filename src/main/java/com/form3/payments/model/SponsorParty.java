@@ -1,39 +1,41 @@
 package com.form3.payments.model;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+public class SponsorParty{
+	private String bankIdCode;
+	private String accountNumber;
+	private String bankId;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "account_number",
-    "bank_id",
-    "bank_id_code"
-})
-public class SponsorParty {
+	public void setBankIdCode(String bankIdCode){
+		this.bankIdCode = bankIdCode;
+	}
 
-  @JsonProperty("account_number")
-  public String accountNumber;
-  @JsonProperty("bank_id")
-  public String bankId;
-  @JsonProperty("bank_id_code")
-  public String bankIdCode;
-  @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<>();
+	public String getBankIdCode(){
+		return bankIdCode;
+	}
 
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties() {
-    return this.additionalProperties;
-  }
+	public void setAccountNumber(String accountNumber){
+		this.accountNumber = accountNumber;
+	}
 
-  @JsonAnySetter
-  public void setAdditionalProperty(String name, Object value) {
-    this.additionalProperties.put(name, value);
-  }
+	public String getAccountNumber(){
+		return accountNumber;
+	}
 
+	public void setBankId(String bankId){
+		this.bankId = bankId;
+	}
+
+	public String getBankId(){
+		return bankId;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"SponsorParty{" + 
+			"bank_id_code = '" + bankIdCode + '\'' + 
+			",account_number = '" + accountNumber + '\'' + 
+			",bank_id = '" + bankId + '\'' + 
+			"}";
+		}
 }
