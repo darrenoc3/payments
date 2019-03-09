@@ -1,6 +1,7 @@
 package com.form3.payments.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -11,24 +12,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "type",
-        "id",
-        "version",
-        "organisation_id",
-        "attributes"
+        "bearer_code",
+        "sender_charges",
+        "receiver_charges_amount",
+        "receiver_charges_currency"
 })
-public class Payment {
+public class ChargesInformation {
 
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("id")
-    public String id;
-    @JsonProperty("version")
-    public Integer version;
-    @JsonProperty("organisation_id")
-    public String organisationId;
-    @JsonProperty("attributes")
-    public Attributes attributes;
+    @JsonProperty("bearer_code")
+    public String bearerCode;
+    @JsonProperty("sender_charges")
+    public List<SenderCharge> senderCharges = null;
+    @JsonProperty("receiver_charges_amount")
+    public String receiverChargesAmount;
+    @JsonProperty("receiver_charges_currency")
+    public String receiverChargesCurrency;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 

@@ -11,24 +11,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "type",
-        "id",
-        "version",
-        "organisation_id",
-        "attributes"
+        "self"
 })
-public class Payment {
+public class Links {
 
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("id")
-    public String id;
-    @JsonProperty("version")
-    public Integer version;
-    @JsonProperty("organisation_id")
-    public String organisationId;
-    @JsonProperty("attributes")
-    public Attributes attributes;
+    @JsonProperty("self")
+    public String self;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
