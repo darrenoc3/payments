@@ -34,7 +34,7 @@ public class PaymentControllerTest {
 
     List<Payment> payments = Collections.singletonList(payment);
 
-    BDDMockito.given(paymentController.getAllPayments()).willReturn(payments);
+    //BDDMockito.given(paymentController.getAllPayments()).willReturn(payments);
 
   }
 

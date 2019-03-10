@@ -1,12 +1,11 @@
 package com.form3.payments.controller;
 
-import static org.springframework.http.HttpStatus.OK;
-
 import com.form3.payments.model.Payment;
 import io.swagger.annotations.ApiOperation;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,40 +26,60 @@ public class PaymentController {
   @PostMapping
   @ResponseBody
   public ResponseEntity createPayment(@RequestBody Payment payment) {
-
-    MultiValueMap<String, String> headersMap = new HttpHeaders();
-    return new ResponseEntity<>(payment, headersMap, OK);
+    // TODO: save payment to repository
+    return new ResponseEntity<>(payment, new HttpHeaders(), HttpStatus.OK);
   }
 
   @ApiOperation(value = "Update a payment resource")
   @PutMapping
   @ResponseBody
   public ResponseEntity updatePayment(@RequestBody Payment payment) {
-    Payment updatedPayment = new Payment();
-    MultiValueMap<String, String> headersMap = new HttpHeaders();
-    return new ResponseEntity<>(updatedPayment, headersMap, OK);
+    Payment updatePayment = getPaymentById(payment.getId());
+    if (updatePayment == null) {
+      return new ResponseEntity<>("Payment " + payment.getId() + " not found",
+          new HttpHeaders(), HttpStatus.NOT_FOUND);
+    }
+    // TODO: replaced updated payment in repository
+    return new ResponseEntity<>(updatePayment, new HttpHeaders(), HttpStatus.OK);
   }
 
   @ApiOperation(value = "Delete a payment resource")
   @DeleteMapping(value = "{id}")
   @ResponseBody
-  public Payment deletePaymentById(@PathVariable(value = "id") String id) {
-    return new Payment();
+  public ResponseEntity deletePaymentById(@PathVariable(value = "id") String id) {
+    Payment deletePayment = getPaymentById(id);
+    if (deletePayment == null) {
+      return new ResponseEntity<>("Payment " + id + " not found", new HttpHeaders(),
+          HttpStatus.NOT_FOUND);
+    }
+    // TODO: delete payment from repository
+    return new ResponseEntity<>(deletePayment, new HttpHeaders(), HttpStatus.OK);
   }
 
   @ApiOperation(value = "Fetch a payment resource by ID")
   @GetMapping(value = "{id}")
   @ResponseBody
-  public Payment getPaymentById(@PathVariable(value = "id") String id) {
-    return new Payment();
+  public ResponseEntity getPayment(@PathVariable(value = "id") String id) {
+    Payment payment = getPaymentById(id);
+    if (payment == null) {
+      return new ResponseEntity<>("Payment " + id + " not found", new HttpHeaders(),
+          HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(payment, new HttpHeaders(), HttpStatus.OK);
   }
 
   @ApiOperation(value = "Fetch all payment resources")
   @GetMapping(value = "all")
   @ResponseBody
-  public List<Payment> getAllPayments() {
-    MultiValueMap<String, String> headersMap = new HttpHeaders();
-    return new ArrayList<>();
+  public ResponseEntity getAllPayments() {
+    // TODO: get all payments from repository
+    List<Payment> payments = new ArrayList<>();
+    return new ResponseEntity<>(payments, new HttpHeaders(), HttpStatus.OK);
   }
 
+  // Avoid code duplication for Get/Update/Delete
+  private Payment getPaymentById(String id) {
+    // TODO: lookup payment in repository
+    return null;
+  }
 }
