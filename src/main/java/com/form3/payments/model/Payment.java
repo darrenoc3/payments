@@ -1,61 +1,62 @@
 package com.form3.payments.model;
 
 public class Payment {
-	private String organisationId;
-	private Attributes attributes;
-	private String id;
-	private String type;
-	private int version;
 
-	public void setOrganisationId(String organisationId){
-		this.organisationId = organisationId;
-	}
+  private String organisationId;
+  private Attributes attributes;
+  private String id;
+  private String type;
+  private int version;
 
-	public String getOrganisationId(){
-		return organisationId;
-	}
+  public void setOrganisationId(String organisationId) {
+    this.organisationId = organisationId;
+  }
 
-	public void setAttributes(Attributes attributes){
-		this.attributes = attributes;
-	}
+  public String getOrganisationId() {
+    return organisationId;
+  }
 
-	public Attributes getAttributes(){
-		return attributes;
-	}
+  public void setAttributes(Attributes attributes) {
+    this.attributes = attributes;
+  }
 
-	public void setId(String id){
-		this.id = id;
-	}
+  public Attributes getAttributes() {
+    return attributes;
+  }
 
-	public String getId(){
-		return id;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public void setType(String type){
-		this.type = type;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public String getType(){
-		return type;
-	}
+  public void setType(String type) {
+    this.type = type;
+  }
 
-	public void setVersion(int version){
-		this.version = version;
-	}
+  public String getType() {
+    return type;
+  }
 
-	public int getVersion(){
-		return version;
-	}
+  public void setVersion(int version) {
+    this.version = version;
+  }
 
-	@Override
- 	public String toString(){
-		return 
-			"Payment{" +
-			"organisation_id = '" + organisationId + '\'' + 
-			",attributes = '" + attributes + '\'' + 
-			",id = '" + id + '\'' + 
-			",type = '" + type + '\'' + 
-			",version = '" + version + '\'' + 
-			"}";
-		}
+  public int getVersion() {
+    return version;
+  }
+
+  @Override
+  public String toString() {
+    return
+        "Payment{" +
+            "organisation_id = '" + organisationId + '\'' +
+            ",attributes = '" + attributes + '\'' +
+            ",id = '" + id + '\'' +
+            ",type = '" + type + '\'' +
+            ",version = '" + version + '\'' +
+            "}";
+  }
 }

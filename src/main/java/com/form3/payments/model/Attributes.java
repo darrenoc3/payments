@@ -1,181 +1,182 @@
 package com.form3.payments.model;
 
-public class Attributes{
-	private DebtorParty debtorParty;
-	private String paymentScheme;
-	private String amount;
-	private SponsorParty sponsorParty;
-	private String schemePaymentSubType;
-	private String processingDate;
-	private ChargesInformation chargesInformation;
-	private String numericReference;
-	private String endToEndReference;
-	private String reference;
-	private Fx fx;
-	private String paymentType;
-	private BeneficiaryParty beneficiaryParty;
-	private String paymentPurpose;
-	private String paymentId;
-	private String currency;
-	private String schemePaymentType;
+public class Attributes {
 
-	public void setDebtorParty(DebtorParty debtorParty){
-		this.debtorParty = debtorParty;
-	}
+  private DebtorParty debtorParty;
+  private String paymentScheme;
+  private String amount;
+  private SponsorParty sponsorParty;
+  private String schemePaymentSubType;
+  private String processingDate;
+  private ChargesInformation chargesInformation;
+  private String numericReference;
+  private String endToEndReference;
+  private String reference;
+  private Fx fx;
+  private String paymentType;
+  private BeneficiaryParty beneficiaryParty;
+  private String paymentPurpose;
+  private String paymentId;
+  private String currency;
+  private String schemePaymentType;
 
-	public DebtorParty getDebtorParty(){
-		return debtorParty;
-	}
+  public void setDebtorParty(DebtorParty debtorParty) {
+    this.debtorParty = debtorParty;
+  }
 
-	public void setPaymentScheme(String paymentScheme){
-		this.paymentScheme = paymentScheme;
-	}
+  public DebtorParty getDebtorParty() {
+    return debtorParty;
+  }
 
-	public String getPaymentScheme(){
-		return paymentScheme;
-	}
+  public void setPaymentScheme(String paymentScheme) {
+    this.paymentScheme = paymentScheme;
+  }
 
-	public void setAmount(String amount){
-		this.amount = amount;
-	}
+  public String getPaymentScheme() {
+    return paymentScheme;
+  }
 
-	public String getAmount(){
-		return amount;
-	}
+  public void setAmount(String amount) {
+    this.amount = amount;
+  }
 
-	public void setSponsorParty(SponsorParty sponsorParty){
-		this.sponsorParty = sponsorParty;
-	}
+  public String getAmount() {
+    return amount;
+  }
 
-	public SponsorParty getSponsorParty(){
-		return sponsorParty;
-	}
+  public void setSponsorParty(SponsorParty sponsorParty) {
+    this.sponsorParty = sponsorParty;
+  }
 
-	public void setSchemePaymentSubType(String schemePaymentSubType){
-		this.schemePaymentSubType = schemePaymentSubType;
-	}
+  public SponsorParty getSponsorParty() {
+    return sponsorParty;
+  }
 
-	public String getSchemePaymentSubType(){
-		return schemePaymentSubType;
-	}
+  public void setSchemePaymentSubType(String schemePaymentSubType) {
+    this.schemePaymentSubType = schemePaymentSubType;
+  }
 
-	public void setProcessingDate(String processingDate){
-		this.processingDate = processingDate;
-	}
+  public String getSchemePaymentSubType() {
+    return schemePaymentSubType;
+  }
 
-	public String getProcessingDate(){
-		return processingDate;
-	}
+  public void setProcessingDate(String processingDate) {
+    this.processingDate = processingDate;
+  }
 
-	public void setChargesInformation(ChargesInformation chargesInformation){
-		this.chargesInformation = chargesInformation;
-	}
+  public String getProcessingDate() {
+    return processingDate;
+  }
 
-	public ChargesInformation getChargesInformation(){
-		return chargesInformation;
-	}
+  public void setChargesInformation(ChargesInformation chargesInformation) {
+    this.chargesInformation = chargesInformation;
+  }
 
-	public void setNumericReference(String numericReference){
-		this.numericReference = numericReference;
-	}
+  public ChargesInformation getChargesInformation() {
+    return chargesInformation;
+  }
 
-	public String getNumericReference(){
-		return numericReference;
-	}
+  public void setNumericReference(String numericReference) {
+    this.numericReference = numericReference;
+  }
 
-	public void setEndToEndReference(String endToEndReference){
-		this.endToEndReference = endToEndReference;
-	}
+  public String getNumericReference() {
+    return numericReference;
+  }
 
-	public String getEndToEndReference(){
-		return endToEndReference;
-	}
+  public void setEndToEndReference(String endToEndReference) {
+    this.endToEndReference = endToEndReference;
+  }
 
-	public void setReference(String reference){
-		this.reference = reference;
-	}
+  public String getEndToEndReference() {
+    return endToEndReference;
+  }
 
-	public String getReference(){
-		return reference;
-	}
+  public void setReference(String reference) {
+    this.reference = reference;
+  }
 
-	public void setFx(Fx fx){
-		this.fx = fx;
-	}
+  public String getReference() {
+    return reference;
+  }
 
-	public Fx getFx(){
-		return fx;
-	}
+  public void setFx(Fx fx) {
+    this.fx = fx;
+  }
 
-	public void setPaymentType(String paymentType){
-		this.paymentType = paymentType;
-	}
+  public Fx getFx() {
+    return fx;
+  }
 
-	public String getPaymentType(){
-		return paymentType;
-	}
+  public void setPaymentType(String paymentType) {
+    this.paymentType = paymentType;
+  }
 
-	public void setBeneficiaryParty(BeneficiaryParty beneficiaryParty){
-		this.beneficiaryParty = beneficiaryParty;
-	}
+  public String getPaymentType() {
+    return paymentType;
+  }
 
-	public BeneficiaryParty getBeneficiaryParty(){
-		return beneficiaryParty;
-	}
+  public void setBeneficiaryParty(BeneficiaryParty beneficiaryParty) {
+    this.beneficiaryParty = beneficiaryParty;
+  }
 
-	public void setPaymentPurpose(String paymentPurpose){
-		this.paymentPurpose = paymentPurpose;
-	}
+  public BeneficiaryParty getBeneficiaryParty() {
+    return beneficiaryParty;
+  }
 
-	public String getPaymentPurpose(){
-		return paymentPurpose;
-	}
+  public void setPaymentPurpose(String paymentPurpose) {
+    this.paymentPurpose = paymentPurpose;
+  }
 
-	public void setPaymentId(String paymentId){
-		this.paymentId = paymentId;
-	}
+  public String getPaymentPurpose() {
+    return paymentPurpose;
+  }
 
-	public String getPaymentId(){
-		return paymentId;
-	}
+  public void setPaymentId(String paymentId) {
+    this.paymentId = paymentId;
+  }
 
-	public void setCurrency(String currency){
-		this.currency = currency;
-	}
+  public String getPaymentId() {
+    return paymentId;
+  }
 
-	public String getCurrency(){
-		return currency;
-	}
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
 
-	public void setSchemePaymentType(String schemePaymentType){
-		this.schemePaymentType = schemePaymentType;
-	}
+  public String getCurrency() {
+    return currency;
+  }
 
-	public String getSchemePaymentType(){
-		return schemePaymentType;
-	}
+  public void setSchemePaymentType(String schemePaymentType) {
+    this.schemePaymentType = schemePaymentType;
+  }
 
-	@Override
- 	public String toString(){
-		return 
-			"Attributes{" + 
-			"debtor_party = '" + debtorParty + '\'' + 
-			",payment_scheme = '" + paymentScheme + '\'' + 
-			",amount = '" + amount + '\'' + 
-			",sponsor_party = '" + sponsorParty + '\'' + 
-			",scheme_payment_sub_type = '" + schemePaymentSubType + '\'' + 
-			",processing_date = '" + processingDate + '\'' + 
-			",charges_information = '" + chargesInformation + '\'' + 
-			",numeric_reference = '" + numericReference + '\'' + 
-			",end_to_end_reference = '" + endToEndReference + '\'' + 
-			",reference = '" + reference + '\'' + 
-			",fx = '" + fx + '\'' + 
-			",payment_type = '" + paymentType + '\'' + 
-			",beneficiary_party = '" + beneficiaryParty + '\'' + 
-			",payment_purpose = '" + paymentPurpose + '\'' + 
-			",payment_id = '" + paymentId + '\'' + 
-			",currency = '" + currency + '\'' + 
-			",scheme_payment_type = '" + schemePaymentType + '\'' + 
-			"}";
-		}
+  public String getSchemePaymentType() {
+    return schemePaymentType;
+  }
+
+  @Override
+  public String toString() {
+    return
+        "Attributes{" +
+            "debtor_party = '" + debtorParty + '\'' +
+            ",payment_scheme = '" + paymentScheme + '\'' +
+            ",amount = '" + amount + '\'' +
+            ",sponsor_party = '" + sponsorParty + '\'' +
+            ",scheme_payment_sub_type = '" + schemePaymentSubType + '\'' +
+            ",processing_date = '" + processingDate + '\'' +
+            ",charges_information = '" + chargesInformation + '\'' +
+            ",numeric_reference = '" + numericReference + '\'' +
+            ",end_to_end_reference = '" + endToEndReference + '\'' +
+            ",reference = '" + reference + '\'' +
+            ",fx = '" + fx + '\'' +
+            ",payment_type = '" + paymentType + '\'' +
+            ",beneficiary_party = '" + beneficiaryParty + '\'' +
+            ",payment_purpose = '" + paymentPurpose + '\'' +
+            ",payment_id = '" + paymentId + '\'' +
+            ",currency = '" + currency + '\'' +
+            ",scheme_payment_type = '" + schemePaymentType + '\'' +
+            "}";
+  }
 }

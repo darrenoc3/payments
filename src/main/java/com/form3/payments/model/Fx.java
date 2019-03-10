@@ -1,51 +1,52 @@
 package com.form3.payments.model;
 
-public class Fx{
-	private String originalCurrency;
-	private String exchangeRate;
-	private String originalAmount;
-	private String contractReference;
+public class Fx {
 
-	public void setOriginalCurrency(String originalCurrency){
-		this.originalCurrency = originalCurrency;
-	}
+  private String originalCurrency;
+  private String exchangeRate;
+  private String originalAmount;
+  private String contractReference;
 
-	public String getOriginalCurrency(){
-		return originalCurrency;
-	}
+  public void setOriginalCurrency(String originalCurrency) {
+    this.originalCurrency = originalCurrency;
+  }
 
-	public void setExchangeRate(String exchangeRate){
-		this.exchangeRate = exchangeRate;
-	}
+  public String getOriginalCurrency() {
+    return originalCurrency;
+  }
 
-	public String getExchangeRate(){
-		return exchangeRate;
-	}
+  public void setExchangeRate(String exchangeRate) {
+    this.exchangeRate = exchangeRate;
+  }
 
-	public void setOriginalAmount(String originalAmount){
-		this.originalAmount = originalAmount;
-	}
+  public String getExchangeRate() {
+    return exchangeRate;
+  }
 
-	public String getOriginalAmount(){
-		return originalAmount;
-	}
+  public void setOriginalAmount(String originalAmount) {
+    this.originalAmount = originalAmount;
+  }
 
-	public void setContractReference(String contractReference){
-		this.contractReference = contractReference;
-	}
+  public String getOriginalAmount() {
+    return originalAmount;
+  }
 
-	public String getContractReference(){
-		return contractReference;
-	}
+  public void setContractReference(String contractReference) {
+    this.contractReference = contractReference;
+  }
 
-	@Override
- 	public String toString(){
-		return 
-			"Fx{" + 
-			"original_currency = '" + originalCurrency + '\'' + 
-			",exchange_rate = '" + exchangeRate + '\'' + 
-			",original_amount = '" + originalAmount + '\'' + 
-			",contract_reference = '" + contractReference + '\'' + 
-			"}";
-		}
+  public String getContractReference() {
+    return contractReference;
+  }
+
+  @Override
+  public String toString() {
+    return
+        "Fx{" +
+            "original_currency = '" + originalCurrency + '\'' +
+            ",exchange_rate = '" + exchangeRate + '\'' +
+            ",original_amount = '" + originalAmount + '\'' +
+            ",contract_reference = '" + contractReference + '\'' +
+            "}";
+  }
 }

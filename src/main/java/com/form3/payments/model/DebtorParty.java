@@ -1,81 +1,82 @@
 package com.form3.payments.model;
 
-public class DebtorParty{
-	private String bankIdCode;
-	private String accountNumber;
-	private String address;
-	private String bankId;
-	private String accountName;
-	private String name;
-	private String accountNumberCode;
+public class DebtorParty {
 
-	public void setBankIdCode(String bankIdCode){
-		this.bankIdCode = bankIdCode;
-	}
+  private String bankIdCode;
+  private String accountNumber;
+  private String address;
+  private String bankId;
+  private String accountName;
+  private String name;
+  private String accountNumberCode;
 
-	public String getBankIdCode(){
-		return bankIdCode;
-	}
+  public void setBankIdCode(String bankIdCode) {
+    this.bankIdCode = bankIdCode;
+  }
 
-	public void setAccountNumber(String accountNumber){
-		this.accountNumber = accountNumber;
-	}
+  public String getBankIdCode() {
+    return bankIdCode;
+  }
 
-	public String getAccountNumber(){
-		return accountNumber;
-	}
+  public void setAccountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
+  }
 
-	public void setAddress(String address){
-		this.address = address;
-	}
+  public String getAccountNumber() {
+    return accountNumber;
+  }
 
-	public String getAddress(){
-		return address;
-	}
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-	public void setBankId(String bankId){
-		this.bankId = bankId;
-	}
+  public String getAddress() {
+    return address;
+  }
 
-	public String getBankId(){
-		return bankId;
-	}
+  public void setBankId(String bankId) {
+    this.bankId = bankId;
+  }
 
-	public void setAccountName(String accountName){
-		this.accountName = accountName;
-	}
+  public String getBankId() {
+    return bankId;
+  }
 
-	public String getAccountName(){
-		return accountName;
-	}
+  public void setAccountName(String accountName) {
+    this.accountName = accountName;
+  }
 
-	public void setName(String name){
-		this.name = name;
-	}
+  public String getAccountName() {
+    return accountName;
+  }
 
-	public String getName(){
-		return name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setAccountNumberCode(String accountNumberCode){
-		this.accountNumberCode = accountNumberCode;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public String getAccountNumberCode(){
-		return accountNumberCode;
-	}
+  public void setAccountNumberCode(String accountNumberCode) {
+    this.accountNumberCode = accountNumberCode;
+  }
 
-	@Override
- 	public String toString(){
-		return 
-			"DebtorParty{" + 
-			"bank_id_code = '" + bankIdCode + '\'' + 
-			",account_number = '" + accountNumber + '\'' + 
-			",address = '" + address + '\'' + 
-			",bank_id = '" + bankId + '\'' + 
-			",account_name = '" + accountName + '\'' + 
-			",name = '" + name + '\'' + 
-			",account_number_code = '" + accountNumberCode + '\'' + 
-			"}";
-		}
+  public String getAccountNumberCode() {
+    return accountNumberCode;
+  }
+
+  @Override
+  public String toString() {
+    return
+        "DebtorParty{" +
+            "bank_id_code = '" + bankIdCode + '\'' +
+            ",account_number = '" + accountNumber + '\'' +
+            ",address = '" + address + '\'' +
+            ",bank_id = '" + bankId + '\'' +
+            ",account_name = '" + accountName + '\'' +
+            ",name = '" + name + '\'' +
+            ",account_number_code = '" + accountNumberCode + '\'' +
+            "}";
+  }
 }

@@ -1,31 +1,32 @@
 package com.form3.payments.model;
 
-public class SenderChargesItem{
-	private String amount;
-	private String currency;
+public class SenderChargesItem {
 
-	public void setAmount(String amount){
-		this.amount = amount;
-	}
+  private String amount;
+  private String currency;
 
-	public String getAmount(){
-		return amount;
-	}
+  public void setAmount(String amount) {
+    this.amount = amount;
+  }
 
-	public void setCurrency(String currency){
-		this.currency = currency;
-	}
+  public String getAmount() {
+    return amount;
+  }
 
-	public String getCurrency(){
-		return currency;
-	}
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
 
-	@Override
- 	public String toString(){
-		return 
-			"SenderChargesItem{" + 
-			"amount = '" + amount + '\'' + 
-			",currency = '" + currency + '\'' + 
-			"}";
-		}
+  public String getCurrency() {
+    return currency;
+  }
+
+  @Override
+  public String toString() {
+    return
+        "SenderChargesItem{" +
+            "amount = '" + amount + '\'' +
+            ",currency = '" + currency + '\'' +
+            "}";
+  }
 }
