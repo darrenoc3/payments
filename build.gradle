@@ -4,15 +4,18 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("com.github.jengelman.gradle.plugins:shadow:5.0.0")
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'com.form3'
 version = '0.0.1-SNAPSHOT'
@@ -23,7 +26,7 @@ repositories {
 }
 
 dependencies {
-	implementation "org.projectlombok:lombok"
+	annotationProcessor "org.projectlombok:lombok"
 
 	implementation "org.springframework.boot:spring-boot-starter-web"
 
@@ -38,4 +41,10 @@ dependencies {
 	testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
 	testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
 	testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.form3.payments.PaymentsApplication'
+	}
 }
