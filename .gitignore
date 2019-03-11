@@ -26,3 +26,9 @@ out/
 *.iml
 
 \.project
+
+target/cucumber/report\.js
+
+fix_user\.sh
+
+bowser\.zip
