@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
 
   @Autowired
-  private   PaymentRepository repository;
+  PaymentRepository paymentRepository;
 
   @ApiOperation(value = "Create a payment resource")
   @PostMapping

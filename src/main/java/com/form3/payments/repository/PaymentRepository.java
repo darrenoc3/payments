@@ -5,10 +5,9 @@ import java.util.List;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 
-@EnableScan
 /**
  * Spring Data repository for storing Payment JSON objects keyed by Payment ID
  */
+@EnableScan
 public interface PaymentRepository extends CrudRepository<Payment, String> {
-  List<Payment> findByPaymentId(String id);
 }

@@ -7,6 +7,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.form3.payments.PaymentsApplication;
+import com.form3.payments.config.DynamoDBConfig;
 import com.form3.payments.model.Payment;
 import java.util.List;
 import java.util.Optional;
@@ -17,13 +18,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = PaymentsApplication.class)
+@SpringBootTest(classes = {PaymentsApplication.class, DynamoDBConfig.class})
 @WebAppConfiguration
 @ActiveProfiles("local")
 @TestPropertySource(properties = {
@@ -33,22 +33,21 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @Ignore
 public class PaymentRepositoryIntegrationTest {
 
-  private DynamoDBMapper dynamoDBMapper;
-
+  @Autowired
+  private PaymentRepository repository;
   @Autowired
   private AmazonDynamoDB amazonDynamoDB;
-
   @Autowired
-  PaymentRepository repository;
+  private DynamoDBMapper mapper;
 
   private static final String EXPECTED_COST = "20";
   private static final String EXPECTED_PRICE = "50";
 
   @Before
   public void setup() throws Exception {
-    dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
+    mapper = new DynamoDBMapper(amazonDynamoDB);
 
-    CreateTableRequest tableRequest = dynamoDBMapper
+    CreateTableRequest tableRequest = mapper
         .generateCreateTableRequest(Payment.class);
     tableRequest.setProvisionedThroughput(
         new ProvisionedThroughput(1L, 1L));
@@ -56,7 +55,7 @@ public class PaymentRepositoryIntegrationTest {
 
     //...
 
-    dynamoDBMapper.batchDelete(
+    mapper.batchDelete(
         (List<Payment>) repository.findAll());
   }
 
