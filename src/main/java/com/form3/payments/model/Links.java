@@ -1,3 +1,7 @@
+/**
+ * Model generated from JSON by RoboPOJOGenerator: https://github.com/robohorse/RoboPOJOGenerator
+ */
+
 package com.form3.payments.model;
 
 public class Links {

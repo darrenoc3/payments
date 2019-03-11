@@ -1,12 +1,25 @@
+/**
+ * Model generated from JSON by RoboPOJOGenerator: https://github.com/robohorse/RoboPOJOGenerator
+ */
+
 package com.form3.payments.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+@DynamoDBTable(tableName = "Payments")
 public class Payment {
 
-  private String organisationId;
-  private Attributes attributes;
+  @DynamoDBAttribute
   private String id;
+  // note that tye isn't an attribute in the DB, since we only accept objects that have type=Payment
   private String type;
+  @DynamoDBAttribute
+  private String organisationId;
+  @DynamoDBAttribute
   private int version;
+  @DynamoDBAttribute
+  private Attributes attributes;
 
   public void setOrganisationId(String organisationId) {
     this.organisationId = organisationId;
