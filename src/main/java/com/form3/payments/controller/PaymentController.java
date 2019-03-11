@@ -1,9 +1,11 @@
 package com.form3.payments.controller;
 
 import com.form3.payments.model.Payment;
+import com.form3.payments.repository.PaymentRepository;
 import io.swagger.annotations.ApiOperation;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
  * objects
  */
 public class PaymentController {
+
+  @Autowired
+  private   PaymentRepository repository;
 
   @ApiOperation(value = "Create a payment resource")
   @PostMapping
