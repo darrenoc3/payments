@@ -32,17 +32,19 @@ public class Payment {
     return id;
   }
 
-  public void setId(String id) {
+  public Payment setId(String id) {
     this.id = id;
+    return this;
   }
 
-  // note that tye isn't an @Attribute in the DB, since we only store objects that have type=Payment
+  // note that type isn't an @Attribute in the DB, since we only store objects that have type=Payment
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public Payment setType(String type) {
     this.type = type;
+    return this;
   }
 
   @DynamoDBAttribute
@@ -50,8 +52,9 @@ public class Payment {
     return version;
   }
 
-  public void setVersion(int version) {
+  public Payment setVersion(int version) {
     this.version = version;
+    return this;
   }
 
   @DynamoDBAttribute
@@ -59,8 +62,10 @@ public class Payment {
     return organisationId;
   }
 
-  public void setOrganisationId(String organisationId) {
+  //
+  public Payment setOrganisationId(String organisationId) {
     this.organisationId = organisationId;
+    return this;
   }
 
   @DynamoDBAttribute
@@ -68,8 +73,9 @@ public class Payment {
     return attributes;
   }
 
-  public void setAttributes(Attributes attributes) {
+  public Payment setAttributes(Attributes attributes) {
     this.attributes = attributes;
+    return this;
   }
 
 
