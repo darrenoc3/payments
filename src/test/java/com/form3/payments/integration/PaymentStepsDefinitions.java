@@ -1,4 +1,4 @@
-package com.form3.payments;
+package com.form3.payments.integration;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

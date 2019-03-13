@@ -1,27 +1,21 @@
 package com.form3.payments;
 
 import com.form3.payments.controller.PaymentController;
-import com.form3.payments.model.Payment;
-import java.util.Collections;
-import java.util.List;
+import com.form3.payments.service.PaymentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(PaymentController.class)
+@RunWith(MockitoJUnitRunner.class)
 public class PaymentControllerTest {
 
-  @Autowired
-  private MockMvc mvc;
+  @Mock
+  private PaymentService service;
 
-  @MockBean
-  private PaymentController paymentController;
+  @InjectMocks
+  private PaymentController controller;
 
   @Test
   public void getPayment() throws Exception {
@@ -30,9 +24,9 @@ public class PaymentControllerTest {
 
   @Test
   public void getPayments() throws Exception {
-    Payment payment = new Payment();
+    //Payment payment = new Payment();
 
-    List<Payment> payments = Collections.singletonList(payment);
+    //List<Payment> payments = Collections.singletonList(payment);
 
     //BDDMockito.given(paymentController.getAllPayments()).willReturn(payments);
 

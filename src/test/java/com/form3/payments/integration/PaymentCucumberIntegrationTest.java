@@ -1,4 +1,4 @@
-package com.form3.payments;
+package com.form3.payments.integration;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -13,5 +13,6 @@ import org.junit.runner.RunWith;
  * Configuration for Cucumber JUnit Runner
  */
 public class PaymentCucumberIntegrationTest {
+
   String baseUrl = "http://localhost:8080";
 }
