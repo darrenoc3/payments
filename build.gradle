@@ -40,11 +40,6 @@ dependencies {
     implementation "com.github.derjust:spring-data-dynamodb:${springDynamoVersion}"
     implementation "com.amazonaws:aws-java-sdk-dynamodb:${dynamoSdkVersion}"
 
-    // JavaMoney
-    compile "org.javamoney:moneta:1.3"
-    // Jackson Money Datatype: Properly parse {amount, currency} pairs
-    implementation "org.zalando:jackson-datatype-money:${jacksonMoneyVersion}"
-
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
@@ -55,6 +50,6 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'com.form3.payments.PaymentsApplication'
+        attributes 'Main-Class': 'com.form3.payments.PaymentApplication'
     }
 }
