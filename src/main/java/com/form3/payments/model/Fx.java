@@ -7,8 +7,8 @@ package com.form3.payments.model;
 public class Fx {
 
   private String originalCurrency;
-  private String exchangeRate;
-  private String originalAmount;
+  private double exchangeRate;
+  private double originalAmount;
   private String contractReference;
 
   public void setOriginalCurrency(String originalCurrency) {
@@ -19,19 +19,19 @@ public class Fx {
     return originalCurrency;
   }
 
-  public void setExchangeRate(String exchangeRate) {
+  public void setExchangeRate(double exchangeRate) {
     this.exchangeRate = exchangeRate;
   }
 
-  public String getExchangeRate() {
+  public double getExchangeRate() {
     return exchangeRate;
   }
 
-  public void setOriginalAmount(String originalAmount) {
+  public void setOriginalAmount(double originalAmount) {
     this.originalAmount = originalAmount;
   }
 
-  public String getOriginalAmount() {
+  public double getOriginalAmount() {
     return originalAmount;
   }
 

@@ -4,11 +4,15 @@
 
 package com.form3.payments.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Attributes {
 
   private DebtorParty debtorParty;
   private String paymentScheme;
-  private String amount;
+  private double amount;
   private SponsorParty sponsorParty;
   private String schemePaymentSubType;
   private String processingDate;
@@ -23,6 +27,10 @@ public class Attributes {
   private String paymentId;
   private String currency;
   private String schemePaymentType;
+
+  @JsonCreator
+  public Attributes() {
+  }
 
   public void setDebtorParty(DebtorParty debtorParty) {
     this.debtorParty = debtorParty;
@@ -40,11 +48,11 @@ public class Attributes {
     return paymentScheme;
   }
 
-  public void setAmount(String amount) {
+  public void setAmount(double amount) {
     this.amount = amount;
   }
 
-  public String getAmount() {
+  public double getAmount() {
     return amount;
   }
 

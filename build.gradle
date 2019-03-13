@@ -1,20 +1,21 @@
 buildscript {
-	ext {
-		springBootVersion = '2.1.3.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-		jcenter()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("com.github.jengelman.gradle.plugins:shadow:5.0.0")
-	}
+    ext {
+        springBootVersion = '2.1.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("com.github.jengelman.gradle.plugins:shadow:5.0.0")
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+// Gradle Shadow: Creates portable JARs
 apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'com.form3'
@@ -22,29 +23,38 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	annotationProcessor "org.projectlombok:lombok"
+    annotationProcessor "org.projectlombok:lombok"
 
-	implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-web"
 
-	implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
-	implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+    // SpringFox: Generates automated Swagger documentation for Spring APIs
+    implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
 
-	implementation "com.amazonaws:aws-java-sdk-dynamodb:${dynamoSdkVersion}"
-	implementation "com.github.derjust:spring-data-dynamodb:${springDynamoVersion}"
+    // Spring Data Repository suppor
+    // t for AWS DynamoDB
+    implementation "com.github.derjust:spring-data-dynamodb:${springDynamoVersion}"
+    implementation "com.amazonaws:aws-java-sdk-dynamodb:${dynamoSdkVersion}"
 
-	testImplementation "org.springframework.boot:spring-boot-starter-test"
-	testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
-	testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
-	testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
-	testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+    // JavaMoney
+    compile "org.javamoney:moneta:1.3"
+    // Jackson Money Datatype: Properly parse {amount, currency} pairs
+    implementation "org.zalando:jackson-datatype-money:${jacksonMoneyVersion}"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+    testImplementation "com.google.code.gson:gson:${gsonVersion}"
 }
 
 jar {
-	manifest {
-		attributes 'Main-Class': 'com.form3.payments.PaymentsApplication'
-	}
+    manifest {
+        attributes 'Main-Class': 'com.form3.payments.PaymentsApplication'
+    }
 }

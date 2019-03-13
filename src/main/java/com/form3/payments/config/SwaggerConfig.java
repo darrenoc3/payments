@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Configuration to enable auto-generated Swagger API docs, hosted at
  * http://localhost:8080/swagger-ui.html
  */
-public class SwaggerConfig {
+class SwaggerConfig {
 
   @Bean
   public Docket api() {

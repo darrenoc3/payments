@@ -4,21 +4,23 @@
 
 package com.form3.payments.model;
 
+import java.util.Arrays;
 import java.util.List;
+import javax.money.MonetaryAmount;
 
 public class ChargesInformation {
 
-  private List<SenderChargesItem> senderCharges;
+  private MonetaryAmount[] senderCharges;
   private String bearerCode;
-  private String receiverChargesAmount;
+  private double receiverChargesAmount;
   private String receiverChargesCurrency;
 
-  public void setSenderCharges(List<SenderChargesItem> senderCharges) {
+  public void setSenderCharges(MonetaryAmount[] senderCharges) {
     this.senderCharges = senderCharges;
   }
 
-  public List<SenderChargesItem> getSenderCharges() {
-    return senderCharges;
+  public List<MonetaryAmount> getSenderCharges() {
+    return Arrays.asList(senderCharges);
   }
 
   public void setBearerCode(String bearerCode) {
@@ -29,11 +31,11 @@ public class ChargesInformation {
     return bearerCode;
   }
 
-  public void setReceiverChargesAmount(String receiverChargesAmount) {
+  public void setReceiverChargesAmount(double receiverChargesAmount) {
     this.receiverChargesAmount = receiverChargesAmount;
   }
 
-  public String getReceiverChargesAmount() {
+  public double getReceiverChargesAmount() {
     return receiverChargesAmount;
   }
 
