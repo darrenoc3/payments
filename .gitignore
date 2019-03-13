@@ -32,3 +32,5 @@ target/cucumber/report\.js
 fix_user\.sh
 
 bowser\.zip
+
+target/cucumber/
