@@ -1,4 +1,4 @@
-package com.form3.payments.repository;
+package com.form3.payments;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -10,10 +10,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.form3.payments.model.Payment;
+import com.form3.payments.repository.PaymentRepository;
 import java.util.List;
 import java.util.Optional;
 import org.junit.Test;
@@ -62,9 +62,8 @@ public class PaymentRepositoryTest {
 
   @Test
   public void saveShouldPersistPayment() {
-    Payment payment = new Payment(TEST_PAYMENT_ID);
-    repository.save(payment);
-    verify(dbMapper).save(payment);
+    repository.save(TEST_PAYMENT);
+    verify(dbMapper).save(TEST_PAYMENT);
   }
 
   @Test
