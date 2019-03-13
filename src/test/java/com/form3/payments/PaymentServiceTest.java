@@ -26,20 +26,17 @@ public class PaymentServiceTest {
   private PaymentService service;
 
   private static final String TEST_PAYMENT_ID = "4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43";
-  private static final Payment TEST_PAYMENT= new Payment()
-      .setId(TEST_PAYMENT_ID);
-  // Same ID but with extra data, to test updates
+  private static final Payment TEST_PAYMENT= new Payment().setId(TEST_PAYMENT_ID);
+
+  // Same ID but with extra data, to test replace
+  private static final String TEST_ORG_ID = "743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb";
   private static final Payment TEST_PAYMENT_WITH_ORG = new Payment().setId(TEST_PAYMENT_ID)
-      .setOrganisationId("743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb");
-
-  private static final String TEST_PAYMENT_ID_2 = "216d4da9-e59a-4cc6-8df3-3da6e7580b77";
-  private static final Payment TEST_PAYMENT_2 = new Payment().setId(TEST_PAYMENT_ID_2);
-
+      .setOrganisationId(TEST_ORG_ID);
 
   @Test
   public void readShouldReturnEmptyOptionalWhenNoPaymentFound() {
     when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.empty());
-    Optional<Payment> result = service.read(TEST_PAYMENT_ID);
+    Optional<Payment> result = service.get(TEST_PAYMENT_ID);
     assertThat(result, is(Optional.empty()));
     verify(repository).read(TEST_PAYMENT_ID);
   }
@@ -47,7 +44,7 @@ public class PaymentServiceTest {
   @Test
   public void readShouldReturnResultWhenPaymentFound() {
     when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.of(TEST_PAYMENT));
-    Payment result = service.read(TEST_PAYMENT_ID).get();
+    Payment result = service.get(TEST_PAYMENT_ID).get();
     verify(repository).read(TEST_PAYMENT_ID);
     assertThat(result, is(equalTo(TEST_PAYMENT)));
   }
@@ -59,84 +56,38 @@ public class PaymentServiceTest {
     verify(repository).save(TEST_PAYMENT);
   }
 
-
-
-/*
   @Test
-  public void replaceShouldReturnEmptyOptionalWhenPaymentNotFound() throws Exception {
-
-    Payment newPaymentData = new Payment().withName(TEST_PAYMENT_ID).withAddress("Sri Lanka");
+  public void replaceShouldReturnEmptyOptionalWhenExistingPaymentNotFound() {
     when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.empty());
-    Optional<Payment> result = service.replace(newPaymentData);
+    Optional<Payment> result = service.replace(TEST_PAYMENT);
     assertThat(result, is(Optional.empty()));
-    verify(repository, never()).save(newPaymentData);
+    verify(repository, never()).save(TEST_PAYMENT);
   }
 
   @Test
-  public void replaceShouldOverwriteAndReturnNewDataWhenPaymentExists() throws Exception {
-
-    Payment oldPaymentData = new Payment().withName(TEST_PAYMENT_ID).withPhoneNumber("000000");
-    Payment newPaymentData = new Payment().withName(TEST_PAYMENT_ID).withAddress("Sri Lanka");
-    when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.of(oldPaymentData));
-    Payment result = service.replace(newPaymentData).get();
-    assertThat(result, is(equalTo(newPaymentData)));
-    verify(repository).save(newPaymentData);
+  public void replaceShouldOverwriteAndReturnNewDataWhenPaymentExists() {
+    when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.of(TEST_PAYMENT));
+    Payment result = service.replace(TEST_PAYMENT_WITH_ORG).get();
+    assertThat(result, is(equalTo(TEST_PAYMENT_WITH_ORG)));
+    verify(repository).save(TEST_PAYMENT_WITH_ORG);
   }
 
   @Test
-  public void updateShouldReturnEmptyOptionalWhenPaymentNotFound() throws Exception {
-
-    Payment newPaymentData = new Payment().withName(TEST_PAYMENT_ID).withAddress("Sri Lanka");
-    when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.empty());
-    Optional<Payment> result = service.update(newPaymentData);
-    assertThat(result, is(Optional.empty()));
-    verify(repository, never()).save(newPaymentData);
-  }
-
-  @Test
-  public void updateShouldOverwriteExistingFieldAndReturnNewDataWhenPaymentExists()
-      throws Exception {
-
-    Payment oldPaymentData = new Payment().withName(TEST_PAYMENT_ID).withAddress("England");
-    Payment newPaymentData = new Payment().withName(TEST_PAYMENT_ID).withAddress("Sri Lanka");
-    when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.of(oldPaymentData));
-    Payment result = service.update(newPaymentData).get();
-    assertThat(result, is(equalTo(newPaymentData)));
-    verify(repository).save(newPaymentData);
-  }
-
-  @Test
-  public void updateShouldNotOverwriteExistingFieldIfNoNewValuePassedAndShouldReturnNewDataWhenPaymentExists()
-      throws Exception {
-
-    Payment oldPaymentData = new Payment().withName(TEST_PAYMENT_ID).withAddress("England");
-    Payment newPaymentData = new Payment().withName(TEST_PAYMENT_ID).withPhoneNumber("000000");
-    Payment expectedResult = new Payment().withName(TEST_PAYMENT_ID).withAddress("England")
-        .withPhoneNumber("000000");
-    when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.of(oldPaymentData));
-    Payment result = service.update(newPaymentData).get();
-    assertThat(result, is(equalTo(expectedResult)));
-    verify(repository).save(expectedResult);
-  }
-
-  @Test
-  public void deleteShouldReturnFalseWhenPaymentNotFound() throws Exception {
-
+  public void deleteShouldReturnFalseWhenPaymentNotFound() {
     when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.empty());
     boolean result = service.delete(TEST_PAYMENT_ID);
     assertThat(result, is(false));
   }
 
   @Test
-  public void deleteShouldReturnTrueWhenPaymentDeleted() throws Exception {
-
+  public void deleteShouldReturnTrueWhenPaymentDeleted() {
     when(repository.read(TEST_PAYMENT_ID))
-        .thenReturn(Optional.of(new Payment().withName(TEST_PAYMENT_ID)));
+        .thenReturn(Optional.of(TEST_PAYMENT));
     boolean result = service.delete(TEST_PAYMENT_ID);
     assertThat(result, is(true));
     verify(repository).delete(TEST_PAYMENT_ID);
   }
-
+/*
   @Test
   public void listShouldReturnEmptyListWhenNothingFound() throws Exception {
 

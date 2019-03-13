@@ -31,7 +31,7 @@ public class PaymentRepository {
   }
 
   public Optional<Payment> read(String id) {
-    log.trace("Entering read() with {}", id);
+    log.trace("Entering get() with {}", id);
     return Optional.ofNullable(dbMapper.load(Payment.class, id));
   }
 

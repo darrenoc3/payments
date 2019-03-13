@@ -21,8 +21,8 @@ public class PaymentService {
 
   private final Logger log = LoggerFactory.getLogger(PaymentService.class);
 
-  public Optional<Payment> read(String id) {
-    log.trace("Entering read() with {}", id);
+  public Optional<Payment> get(String id) {
+    log.trace("Entering get() with {}", id);
     return repository.read(id);
   }
 
@@ -31,23 +31,19 @@ public class PaymentService {
     repository.save(payment);
     return payment;
   }
-/*
+
   public Optional<Payment> replace(Payment newPaymentData) {
     log.trace("Entering replace() with {}", newPaymentData);
-    Optional<Payment> opt = repository.read(newPaymentData.getId());
+    Optional<Payment> existingPayment = repository.read(newPaymentData.getId());
     if (!existingPayment.isPresent()) {
       log.warn("Payment {} not found", newPaymentData.getId());
       return Optional.empty();
     }
-    Payment payment = opt.get();
-    payment.setAddress(newPaymentData.getAddress());
-    payment.setPhoneNumber(newPaymentData.getPhoneNumber());
-    repository.save(payment);
-    return Optional.of(payment);
+    repository.save(newPaymentData);
+    return Optional.of(newPaymentData);
   }
 
   public boolean delete(String name) {
-
     log.trace("Entering delete() with {}", name);
     if (!repository.read(name).isPresent()) {
       log.warn("Payment {} not found", name);
@@ -56,7 +52,7 @@ public class PaymentService {
     repository.delete(name);
     return true;
   }
-
+/*
   public List<Payment> list() {
 
     log.trace("Entering list()");
