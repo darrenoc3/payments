@@ -23,16 +23,18 @@ public class PaymentRepository {
   @Autowired
   private DynamoDBMapper dbMapper;
 
-  public List<Payment> readAll() {
-    log.trace("Entering readAll()");
-    PaginatedList<Payment> results = dbMapper.scan(Payment.class, new DynamoDBScanExpression());
-    results.loadAllResults();
-    return results;
+  public Optional<Payment> read(String id) {
+    log.trace("Entering read() with {}", id);
+    return Optional.ofNullable(dbMapper.load(Payment.class, id));
   }
 
-  public Optional<Payment> read(String id) {
-    log.trace("Entering get() with {}", id);
-    return Optional.ofNullable(dbMapper.load(Payment.class, id));
+  public List<Payment> readByOrganisationId(String organisationId) {
+    log.trace("Entering readByOrganisationId() with {}", organisationId);
+    DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+        .withFilterExpression("organisationId = " +organisationId);
+    PaginatedList<Payment> results = dbMapper.scan(Payment.class, scanExpression);
+    results.loadAllResults();
+    return results;
   }
 
   public void save(Payment Payment) {

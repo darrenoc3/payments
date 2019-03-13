@@ -2,6 +2,7 @@ package com.form3.payments.service;
 
 import com.form3.payments.model.Payment;
 import com.form3.payments.repository.PaymentRepository;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,11 @@ public class PaymentService {
   public Optional<Payment> get(String id) {
     log.trace("Entering get() with {}", id);
     return repository.read(id);
+  }
+
+  public List<Payment> findByOrganisationId(String organisationId) {
+    log.trace("Entering findByOrganisationId() with {}", organisationId);
+    return repository.readByOrganisationId(organisationId);
   }
 
   public Payment create(Payment payment) {
@@ -52,12 +58,4 @@ public class PaymentService {
     repository.delete(name);
     return true;
   }
-/*
-  public List<Payment> list() {
-
-    log.trace("Entering list()");
-    return repository.readAll();
-  }
-*/
-
 }

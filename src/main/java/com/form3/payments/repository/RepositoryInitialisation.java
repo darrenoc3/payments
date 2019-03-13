@@ -39,15 +39,11 @@ class RepositoryInitialisation implements ApplicationListener<ContextRefreshedEv
         .generateCreateTableRequest(Payment.class)
         .withProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
     try {
-      // See if the table exists already
-      DescribeTableResult result = dynamoDB.describeTable(request.getTableName());
-      log.info("DynamoDB table already exists {}, {}", request.getTableName(),
-          result.getTable().getTableStatus());
+      dynamoDB.describeTable(request.getTableName());
+      log.info("DynamoDB table already exists {}", request.getTableName());
     } catch (ResourceNotFoundException expectedException) {
-      // If not, create it
-      CreateTableResult result = dynamoDB.createTable(request);
-      log.info("DynamoDB table doesn't exist, creating table {}, {}", request.getTableName(),
-          result.getTableDescription().getTableStatus());
+      log.info("DynamoDB table doesn't exist, creating table {}", request.getTableName());
+      dynamoDB.createTable(request);
     }
   }
 

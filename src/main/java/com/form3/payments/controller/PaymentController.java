@@ -3,6 +3,10 @@ package com.form3.payments.controller;
 import com.form3.payments.model.Payment;
 import com.form3.payments.service.PaymentService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ResponseHeader;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -56,6 +60,17 @@ public class PaymentController {
         .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
+  @ApiOperation(value = "Find payments by Organisation ID")
+  @GetMapping(value = "/findByOrganisation")
+  @ResponseBody
+  public ResponseEntity findByOrganisationId(@ApiParam String organisationId) {
+    List<Payment> payments = service.findByOrganisationId(organisationId);
+    if(payments.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(payments, HttpStatus.OK);
+  }
+
 
   @ApiOperation(value = "Update an existing payment")
   @PutMapping
@@ -73,14 +88,5 @@ public class PaymentController {
     return service.delete(id) ?
         new ResponseEntity<>(HttpStatus.NO_CONTENT) :
         new ResponseEntity<>(HttpStatus.NOT_FOUND);
-  }
-
-  @ApiOperation(value = "Fetch all payments")
-  @GetMapping(value = "all")
-  @ResponseBody
-  public ResponseEntity getAllPayments() {
-    // TODO: get all payments from repository
-    List<Payment> payments = new ArrayList<>();
-    return new ResponseEntity<>(payments, new HttpHeaders(), HttpStatus.OK);
   }
 }

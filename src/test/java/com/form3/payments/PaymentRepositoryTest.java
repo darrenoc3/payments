@@ -1,5 +1,8 @@
 package com.form3.payments;
 
+import static com.form3.payments.TestData.TEST_ORG_ID;
+import static com.form3.payments.TestData.TEST_PAYMENT;
+import static com.form3.payments.TestData.TEST_ID;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -22,6 +25,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+
 @RunWith(MockitoJUnitRunner.class)
 public class PaymentRepositoryTest {
 
@@ -31,33 +35,29 @@ public class PaymentRepositoryTest {
   @InjectMocks
   private PaymentRepository repository;
 
-  private static final String TEST_PAYMENT_ID = "4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43";
-  private static final Payment TEST_PAYMENT = new Payment().setId(TEST_PAYMENT_ID);
-
   @Test
-  @SuppressWarnings("unchecked")
-  public void readAllShouldScanTheTable() {
-    PaginatedScanList expectedResult = mock(PaginatedScanList.class);
-    when(dbMapper.scan(eq(Payment.class), any(DynamoDBScanExpression.class)))
-        .thenReturn(expectedResult);
-    List<Payment> result = repository.readAll();
-    assertThat(result, is(expectedResult));
-    verify(expectedResult).loadAllResults();
+  public void readShouldWrapResultIntoOptional() {
+    when(dbMapper.load(Payment.class, TEST_ID)).thenReturn(TEST_PAYMENT);
+    Optional<Payment> result = repository.read(TEST_ID);
+    assert (result.isPresent());
+    assertThat(result.get(), is(equalTo(TEST_PAYMENT)));
   }
 
   @Test
   public void readShouldReturnEmptyOptionalWhenNoResult() {
-    when(dbMapper.load(Payment.class, TEST_PAYMENT_ID)).thenReturn(null);
-    Optional<Payment> result = repository.read(TEST_PAYMENT_ID);
+    when(dbMapper.load(Payment.class, TEST_ID)).thenReturn(null);
+    Optional<Payment> result = repository.read(TEST_ID);
     assertThat(result, is(Optional.empty()));
   }
 
   @Test
-  public void readShouldWrapResultIntoOptional() {
-    when(dbMapper.load(Payment.class, TEST_PAYMENT_ID)).thenReturn(TEST_PAYMENT);
-    Optional<Payment> result = repository.read(TEST_PAYMENT_ID);
-    assert (result.isPresent());
-    assertThat(result.get(), is(equalTo(TEST_PAYMENT)));
+  public void readByOrgIdShouldReturnPaymentsList() {
+    PaginatedScanList expectedResult = mock(PaginatedScanList.class);
+    when(dbMapper.scan(eq(Payment.class), any(DynamoDBScanExpression.class)))
+        .thenReturn(expectedResult);
+    List<Payment> result = repository.readByOrganisationId(TEST_ORG_ID);
+    assertThat(result, is(expectedResult));
+    verify(expectedResult).loadAllResults();
   }
 
   @Test
@@ -68,7 +68,7 @@ public class PaymentRepositoryTest {
 
   @Test
   public void deleteShouldDeletePaymentById() {
-    repository.delete(TEST_PAYMENT_ID);
+    repository.delete(TEST_ID);
     verify(dbMapper).delete(any(Payment.class));
   }
 }
