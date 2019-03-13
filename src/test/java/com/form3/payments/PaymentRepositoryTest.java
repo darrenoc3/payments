@@ -32,7 +32,7 @@ public class PaymentRepositoryTest {
   private PaymentRepository repository;
 
   private static final String TEST_PAYMENT_ID = "4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43";
-  private static final Payment TEST_PAYMENT = new Payment(TEST_PAYMENT_ID);
+  private static final Payment TEST_PAYMENT = new Payment().setId(TEST_PAYMENT_ID);
 
   @Test
   @SuppressWarnings("unchecked")

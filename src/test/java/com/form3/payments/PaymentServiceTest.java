@@ -26,44 +26,40 @@ public class PaymentServiceTest {
   private PaymentService service;
 
   private static final String TEST_PAYMENT_ID = "4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43";
-  private static final Payment TEST_PAYMENT = new Payment(TEST_PAYMENT_ID);
+  private static final Payment TEST_PAYMENT= new Payment()
+      .setId(TEST_PAYMENT_ID);
   // Same ID but with extra data, to test updates
-  private static final Payment TEST_PAYMENT_MODIFIED = new Payment(TEST_PAYMENT_ID)
+  private static final Payment TEST_PAYMENT_WITH_ORG = new Payment().setId(TEST_PAYMENT_ID)
       .setOrganisationId("743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb");
 
   private static final String TEST_PAYMENT_ID_2 = "216d4da9-e59a-4cc6-8df3-3da6e7580b77";
-  private static final Payment TEST_PAYMENT_2 = new Payment(TEST_PAYMENT_ID);
+  private static final Payment TEST_PAYMENT_2 = new Payment().setId(TEST_PAYMENT_ID_2);
+
 
   @Test
-  public void readShouldReturnEmptyOptionalWhenNoPaymentFound() throws Exception {
-    PaymentModelTest data = new PaymentModelTest();
+  public void readShouldReturnEmptyOptionalWhenNoPaymentFound() {
     when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.empty());
     Optional<Payment> result = service.read(TEST_PAYMENT_ID);
     assertThat(result, is(Optional.empty()));
+    verify(repository).read(TEST_PAYMENT_ID);
   }
 
   @Test
-  public void readShouldReturnResultWhenPaymentFound() throws Exception {
+  public void readShouldReturnResultWhenPaymentFound() {
     when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.of(TEST_PAYMENT));
     Payment result = service.read(TEST_PAYMENT_ID).get();
+    verify(repository).read(TEST_PAYMENT_ID);
     assertThat(result, is(equalTo(TEST_PAYMENT)));
   }
 
   @Test
-  public void createShouldReturnNewCustomerWhenPaymentDoesntExistYet() throws Exception {
-    when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.empty());
-    Payment result = service.create(TEST_PAYMENT).get();
+  public void createShouldReturnNewPayment() {
+    Payment result = service.create(TEST_PAYMENT);
     assertThat(result, is(equalTo(TEST_PAYMENT)));
     verify(repository).save(TEST_PAYMENT);
   }
 
-  @Test
-  public void createShouldReturnEmptyOptionalWhenPaymentAlreadyExists() throws Exception {
-    when(repository.read(TEST_PAYMENT_ID)).thenReturn(Optional.of(TEST_PAYMENT));
-    Optional<Payment> result = service.create(TEST_PAYMENT_MODIFIED);
-    assertThat(result, is(Optional.empty()));
-    verify(repository, never()).save(TEST_PAYMENT_MODIFIED);
-  }
+
 
 /*
   @Test

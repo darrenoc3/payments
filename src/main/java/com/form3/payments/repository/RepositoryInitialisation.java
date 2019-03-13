@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.CreateTableResult;
 import com.amazonaws.services.dynamodbv2.model.DescribeTableResult;
+import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 import com.form3.payments.model.Payment;
@@ -17,6 +18,9 @@ import org.springframework.stereotype.Component;
 
 
 @Component
+/**
+ * Component to create DynamoDB schema for Payment.class if it doesn't already exist
+ */
 class RepositoryInitialisation implements ApplicationListener<ContextRefreshedEvent> {
 
   private final Logger log = LoggerFactory.getLogger(getClass());
@@ -30,16 +34,20 @@ class RepositoryInitialisation implements ApplicationListener<ContextRefreshedEv
   @Override
   public void onApplicationEvent(ContextRefreshedEvent event) {
 
-    log.trace("Entering createDatabaseTablesIfNotExist()");
+    log.info("Initialising DynamoDB repository");
     CreateTableRequest request = dbMapper
         .generateCreateTableRequest(Payment.class)
         .withProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
     try {
+      // See if the table exists already
       DescribeTableResult result = dynamoDB.describeTable(request.getTableName());
-      log.info("Table status {}, {}", request.getTableName(), result.getTable().getTableStatus());
+      log.info("DynamoDB table already exists {}, {}", request.getTableName(),
+          result.getTable().getTableStatus());
     } catch (ResourceNotFoundException expectedException) {
+      // If not, create it
       CreateTableResult result = dynamoDB.createTable(request);
-      log.info("Table creation triggered {}, {}", request.getTableName(), result.getTableDescription().getTableStatus());
+      log.info("DynamoDB table doesn't exist, creating table {}, {}", request.getTableName(),
+          result.getTableDescription().getTableStatus());
     }
   }
 

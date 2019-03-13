@@ -4,15 +4,15 @@
 
 package com.form3.payments.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@DynamoDBDocument
 public class Attributes {
+
+  private double amount;
 
   private DebtorParty debtorParty;
   private String paymentScheme;
-  private double amount;
   private SponsorParty sponsorParty;
   private String schemePaymentSubType;
   private String processingDate;
@@ -28,8 +28,12 @@ public class Attributes {
   private String currency;
   private String schemePaymentType;
 
-  @JsonCreator
-  public Attributes() {
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
+
+  public double getAmount() {
+    return amount;
   }
 
   public void setDebtorParty(DebtorParty debtorParty) {
@@ -46,14 +50,6 @@ public class Attributes {
 
   public String getPaymentScheme() {
     return paymentScheme;
-  }
-
-  public void setAmount(double amount) {
-    this.amount = amount;
-  }
-
-  public double getAmount() {
-    return amount;
   }
 
   public void setSponsorParty(SponsorParty sponsorParty) {

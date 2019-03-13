@@ -26,14 +26,10 @@ public class PaymentService {
     return repository.read(id);
   }
 
-  public Optional<Payment> create(Payment payment) {
+  public Payment create(Payment payment) {
     log.trace("Entering create() with {}", payment);
-    if (repository.read(payment.getId()).isPresent()) {
-      log.warn("Payment with id={} exits already", payment.getId());
-      return Optional.empty();
-    }
     repository.save(payment);
-    return Optional.of(payment);
+    return payment;
   }
 /*
   public Optional<Payment> replace(Payment newPaymentData) {

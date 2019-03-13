@@ -41,6 +41,6 @@ public class PaymentRepository {
   }
 
   public void delete(String id) {
-    dbMapper.delete(new Payment(id));
+    dbMapper.delete(new Payment().setId(id));
   }
 }

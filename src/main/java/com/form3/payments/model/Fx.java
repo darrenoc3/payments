@@ -4,6 +4,9 @@
 
 package com.form3.payments.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+
+@DynamoDBDocument
 public class Fx {
 
   private String originalCurrency;

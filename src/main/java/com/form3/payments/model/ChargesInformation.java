@@ -4,19 +4,26 @@
 
 package com.form3.payments.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@DynamoDBDocument
 public class ChargesInformation {
 
-  private List<SenderChargesItem> senderCharges;
+  private List<SenderCharge> senderCharges;
   private String bearerCode;
   private double receiverChargesAmount;
   private String receiverChargesCurrency;
 
-  public void setSenderCharges(List<SenderChargesItem> senderCharges) {
-    this.senderCharges = senderCharges; }
+  public void setSenderCharges(List<SenderCharge> senderCharges) {
+    this.senderCharges = senderCharges;
+  }
 
-  public List<SenderChargesItem> getSenderCharges() { return senderCharges; }
+  public List<SenderCharge> getSenderCharges() {
+    return senderCharges;
+  }
 
   public void setBearerCode(String bearerCode) {
     this.bearerCode = bearerCode;

@@ -4,16 +4,20 @@
 
 package com.form3.payments.model;
 
-public class SenderChargesItem {
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
-  private String amount;
+@DynamoDBDocument
+public class SenderCharge {
+
+  private double amount;
   private String currency;
 
-  public void setAmount(String amount) {
+  public void setAmount(double amount) {
     this.amount = amount;
   }
 
-  public String getAmount() {
+  public double getAmount() {
     return amount;
   }
 
@@ -28,7 +32,7 @@ public class SenderChargesItem {
   @Override
   public String toString() {
     return
-        "SenderChargesItem{" +
+        "SenderCharge{" +
             "amount = '" + amount + '\'' +
             ",currency = '" + currency + '\'' +
             "}";

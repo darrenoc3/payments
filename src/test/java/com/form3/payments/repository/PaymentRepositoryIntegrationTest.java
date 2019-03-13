@@ -61,7 +61,7 @@ public class PaymentRepositoryIntegrationTest {
 
   @Test
   public void sampleTestCase() {
-    Payment payment = new Payment("3501");
+    Payment payment = new Payment().setId("foo");
     repository.save(payment);
 
     //Optional<Payment> result = repository.findById("3501");

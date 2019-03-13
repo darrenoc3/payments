@@ -22,23 +22,24 @@ public class DynamoDBConfig {
 
   private final Logger log = LoggerFactory.getLogger(DynamoDBConfig.class);
 
-  @Value("${amazon.dynamodb.endpoint}")
-  private String amazonDynamoDBEndpoint;
-
   @Value("${amazon.aws.accesskey}")
   private String amazonAWSAccessKey;
 
   @Value("${amazon.aws.secretkey}")
   private String amazonAWSSecretKey;
 
+  @Value("${amazon.aws.region}")
+  private String amazonAWSRegion;
+
   @Bean
   public AmazonDynamoDB amazonDynamoDB() {
     log.trace("Entering amazonDynamoDb()");
-    log.trace("Using Dynamo endpoint {}", amazonDynamoDBEndpoint);
+    log.trace("Using Dynamo region {}", amazonAWSRegion);
+    AWSCredentials foo = amazonAWSCredentials();
     return AmazonDynamoDBClientBuilder
         .standard()
-        .withEndpointConfiguration(new EndpointConfiguration(amazonDynamoDBEndpoint, ""))
         .withCredentials(new AWSStaticCredentialsProvider(amazonAWSCredentials()))
+        .withRegion(amazonAWSRegion)
         .build();
   }
 
