@@ -54,6 +54,11 @@ public abstract class AbstractSpringTest {
     return executeRestCall(getPaymentUrl(), HttpMethod.PUT, Optional.of(payment));
   }
 
+  ResponseEntity<Payment> executeDelete(String paymentId) {
+    String urlWithId = getPaymentUrl() + "/" + paymentId;
+    return executeRestCall(urlWithId, HttpMethod.DELETE, Optional.empty());
+  }
+
   private ResponseEntity<Payment> executeRestCall(String url, HttpMethod method,
       Optional<Payment> payment) {
     HttpEntity requestEntity = null;

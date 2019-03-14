@@ -25,3 +25,12 @@ Feature: Testing a Payment REST API
   Scenario: Failing to update a payment that doesn't exist
     When the client calls PUT /payment
     Then the client receives status code of "404 NOT_FOUND"
+
+  Scenario: Deleting a payment
+    Given a payment was created previously
+    When the client calls DELETE /payment
+    Then the client receives status code of "204 NO_CONTENT"
+
+  Scenario: Deleting a payment that doesn't exist
+    When the client calls DELETE /payment
+    Then the client receives status code of "404 NOT_FOUND"

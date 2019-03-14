@@ -41,7 +41,7 @@ public class StepDefinitions extends AbstractSpringTest {
   }
 
   @When("^the client calls POST /payment$")
-  public void the_client_issues_POST_payment() {
+  public void the_client_calls_POST_payment() {
     postPayment();
   }
 
@@ -59,7 +59,7 @@ public class StepDefinitions extends AbstractSpringTest {
 
 
   @When("^the client calls GET /payment$")
-  public void the_client_issues_GET_payment() {
+  public void the_client_calls_GET_payment() {
     // Either GET using the last generated paymentID, if one exists (success case)
     // or try to GET using a fake ID (failure case)
     response = lastPaymentId.map(
@@ -76,7 +76,7 @@ public class StepDefinitions extends AbstractSpringTest {
   }
 
   @When("^the client calls PUT /payment$")
-  public void the_client_issues_PUT_payment() {
+  public void the_client_calls_PUT_payment() {
     // PUT an existing payment (success case)
     if (response.isPresent()) {
       Payment updatedPayment = response.get().getBody();
@@ -86,6 +86,17 @@ public class StepDefinitions extends AbstractSpringTest {
     } else {
       // Try to PUT a non-existent payment (failure case)
       response = Optional.of(executePut(new Payment().setId(FAKE_PAYMENT_ID)));
+    }
+  }
+
+  @When("^the client calls DELETE /payment$")
+  public void the_client_calls_DELETE_payment() {
+    // Delete an existing payment (success case)
+    if (response.isPresent()) {
+      response = Optional.of(executeDelete(lastPaymentId.get()));
+    } else {
+      // Try to delete a non-existent payment (failure case)
+      response = Optional.of(executeDelete(FAKE_PAYMENT_ID));
     }
   }
 }
