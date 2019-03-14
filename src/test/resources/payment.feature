@@ -14,7 +14,6 @@ Feature: Testing a Payment REST API
     And the client receives a payment
 
   Scenario: Failing to retrieve a payment that doesn't exist
-    Given a payment wasnt created yet
     When the client calls GET /payment
     Then the client receives status code of "404 NOT_FOUND"
 
@@ -24,6 +23,5 @@ Feature: Testing a Payment REST API
     Then the client receives status code of "200 OK"
 
   Scenario: Failing to update a payment that doesn't exist
-    Given a payment wasnt created yet
     When the client calls PUT /payment
     Then the client receives status code of "404 NOT_FOUND"
